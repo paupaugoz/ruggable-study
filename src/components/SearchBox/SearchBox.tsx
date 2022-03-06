@@ -31,6 +31,7 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
     return null;
   }, 1000);
 
+  // loadOptions returns a promise which handles the value and labels for AsyncSelect
   const loadOptions = (input: string, callback: any) => {
     if (!input) {
       callback({ options: [] });
@@ -46,7 +47,6 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
     <Row>
       <Col className='align-items-center' data-testid={SearchBoxTestId.wrapper}>
         <AsyncSelect
-          data-testid='TEST'
           placeholder='Search for a Github User...'
           className='search-box'
           loadOptions={loadOptions}

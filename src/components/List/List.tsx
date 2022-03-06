@@ -7,7 +7,7 @@ import { ListTestId } from './TestId';
 
 export const List: React.FC<ListProps> = (props) => {
   const { selectedValue } = props;
-  const [repositories, setRepositories] = useState([]);
+  const [repositories, setRepositories] = useState([] as Repository[]);
 
   useEffect(() => {
     (async () => {
