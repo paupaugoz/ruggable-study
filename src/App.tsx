@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import './App.css';
 import { List } from './components/List/List';
 import { SearchBox } from './components/SearchBox/SearchBox';
+import './App.scss';
 
 export const App: React.FC = () => {
   const [selectedValue, setSelectedValue] = useState('');
