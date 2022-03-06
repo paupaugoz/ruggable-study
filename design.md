@@ -1,3 +1,12 @@
+**How to run and test**:
+
+1) Clone repository
+2) npm i to install dependencies
+3) Npm start
+
+- For running unit tests => npm run test
+- For running end-to-end Cypress tests => npm run e2e (make sure the application is running on localhost:3000
+
 **Problem**
 
 Build a search UI that displays a list of GitHub user&#39;s repositories ranked by stars. For
@@ -63,3 +72,12 @@ GraphQL GitHub API. Please do not use a library for querying
 1. useContext vs useState ?
 1. Unnecessary to use useContext in this case as we are not building a big application that will require global usage of any variables. At most, App will house both SearchBar and List
 1. For optimization purposes, assuming this application will be scaled, useContext will house the search results in case it&#39;ll be used globally so we can avoid prop drilling
+
+
+**Additional Features to add given enough time:**
+
+- Add capability to sort and search by repository, user, issue, etc.
+- Create a useDebounce hook that takes in any function callback
+- Use a cache like redis to store user's searches to optimize search performance
+- Ability to rate limit as Github has a rate limit for their API
+- Add a modal for displaying server errors
