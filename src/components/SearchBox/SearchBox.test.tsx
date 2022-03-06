@@ -8,7 +8,8 @@ import { SearchBoxTestId } from './TestId';
 axios.get = jest.fn();
 
 describe('React-select component tests', () => {
-  const renderWrapper = () => render(<SearchBox />);
+  const renderWrapper = () =>
+    render(<SearchBox setSelectedValue={jest.fn()} />);
 
   it('should render the search box with the proper placeholder', () => {
     renderWrapper();
