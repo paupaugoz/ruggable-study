@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+**How to run and test**:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1) Clone repository
+2) npm i to install dependencies
+3) Npm start
 
-## Available Scripts
+- For running unit tests => npm run test
+- For running end-to-end Cypress tests => npm run e2e (make sure the application is running on localhost:3000
 
-In the project directory, you can run:
+**Problem**
 
-### `npm start`
+Build a search UI that displays a list of GitHub user&#39;s repositories ranked by stars. For
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+example, if you were to search for Facebook, you would see the react and
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+react-native repositories at the top of the list. You must use either the REST or
 
-### `npm test`
+GraphQL GitHub API. Please do not use a library for querying
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Goals**
 
-### `npm run build`
+- Create a search UI with a minimalistic approach to allow users to search by Github user&#39;s repositories sorted by most stars.
+- Utilize Github&#39;s API via REST API (implement rate limiting on front-end to avoid hitting rate limits on Github API)
+- Allow for UI to scale at different resolutions (mobile, tablet, laptop, monitor)
+- Implement unit and integration tests for components
+- Implement end-to-end testing to ensure application interacts properly with Github API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Non-Goals**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Web application will not utilize a traditional server, and will directly call Github API via client (assuming that we are only using one endpoint. Best practice is to still have a server i.e. Node, Golang that makes third-party calls in order to keep the server as the source of truth, and keeping the front-end as &quot;dumb&quot; as possible).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Nice-to-haves:**
 
-### `npm run eject`
+- Ability to change sort filtering by **best match, stars, forks** , **updated** , or help-wanted-issues
+- Ability to change sorting order by **desc** , **asc**
+- Implement virtual scrolling to optimize performance of loading large lists in client
+- Ability to search repositories, organizations, users (allow for search flexibility)
+- Refactor useDebounce hook to be more generic so that it can be used for any type of function that requires debounce
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Technologies:**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Front-end: React w/ Typescript
+- Styling framework: React Bootstrap
+- Linter: ESLint w/ Typescript
+- E2E framework: Cypress
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Core Dependencies:**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- React-select - Dependency that supports async searching, and autocomplete functionalities
+- React-bootstrap - Utilizing bootstrap's FE framework to allow for quicker turnaround time with establishing a layout given time constraints
 
-## Learn More
+**Github API Endpoints:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Search User and list repositories:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[**https://docs.github.com/en/rest/reference/repos#list-repositories-for-a-user**](https://docs.github.com/en/rest/reference/repos#list-repositories-for-a-user)
+
+**Search Repositories and list by user:**
+
+[**https://api.github.com/search/repositories?q=user%3Afacebook&amp;sort=stars&amp;order=desc**](https://api.github.com/search/repositories?q=user%3Afacebook&sort=stars&order=desc)
+
+**Implementation:**
+
+**Components:**
+
+- App - Houses components
+- SearchBar - houses the search bar
+- List - houses the list that will display the user search results
+
+**Considerations:**
+
+1. useContext vs useState ?
+1. Unnecessary to use useContext in this case as we are not building a big application that will require global usage of any variables. At most, App will house both SearchBar and List
+1. For optimization purposes, assuming this application will be scaled, useContext will house the search results in case it&#39;ll be used globally so we can avoid prop drilling
+
+
+**Additional Features to add given enough time:**
+
+- Add capability to sort and search by repository, user, issue, etc.
+- Create a useDebounce hook that takes in any function callback
+- Use a cache like redis to store user's searches to optimize search performance
+- Ability to rate limit as Github has a rate limit for their API
+- Add a modal for displaying server errors
