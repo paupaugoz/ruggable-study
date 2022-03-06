@@ -20,7 +20,6 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
 
     if (error) {
       // handle error
-      console.log('ERROR: ', error);
     }
     if (!data) return callback([]);
     const formattedOptions = data.items.map((user: User) => {

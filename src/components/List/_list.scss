@@ -1,0 +1,15 @@
+#list-component {
+  margin-top: 2rem;
+
+  .list-group {
+    padding: 0px 15px;
+
+    .list-group-item {
+      margin: 15px;
+    }
+
+    p {
+      text-align: start;
+    }
+  }
+}

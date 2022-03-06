@@ -11,4 +11,8 @@ export const getUser = async (userQuery: string) :Promise<Resolved> => resolve(a
   },
 }));
 
-// `https://api.github.com/search/repositories?q=user%3A${input}&sort=stars&order=desc`
+export const getRepositoriesByUser = async (userQuery: string) :Promise<Resolved> => resolve(axios.get(`${githubAPIUri}/repositories`, {
+  params: {
+    q: encodeURI(`user:${userQuery}`), sort: 'stars', order: 'desc', per_page: 10,
+  },
+}));

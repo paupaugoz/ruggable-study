@@ -1,3 +1,3 @@
 export const SearchBoxTestId = {
-  wrapper: 'wrapper__search-box',
+  wrapper: 'search-box__wrapper-search-box',
 };
