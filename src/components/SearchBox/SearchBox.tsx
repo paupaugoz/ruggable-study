@@ -46,6 +46,7 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
     <Row>
       <Col className='align-items-center' data-testid={SearchBoxTestId.wrapper}>
         <AsyncSelect
+          data-testid='TEST'
           placeholder='Search for a Github User...'
           className='search-box'
           loadOptions={loadOptions}
